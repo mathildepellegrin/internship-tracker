@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Internship Tracker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Internship Application Tracker</h1>
+
+  <form id="internship-form">
+    <input type="text" id="company" placeholder="Company" required>
+    <input type="text" id="role" placeholder="Role" required>
+    <input type="date" id="dateApplied" required>
+    <select id="status" required>
+      <option value="Applied">Applied</option>
+      <option value="Interviewing">Interviewing</option>
+      <option value="Rejected">Rejected</option>
+      <option value="Offer">Offer</option>
+    </select>
+    <input type="text" id="notes" placeholder="Notes">
+    <button type="submit">Add Application</button>
+  </form>
+
+  <h2>Applications</h2>
+  <table id="application-table">
+    <thead>
+  <tr>
+    <th onclick="sortBy('company')" class="sortable">Company ⬍</th>
+    <th onclick="sortBy('role')" class="sortable">Role ⬍</th>
+    <th onclick="sortBy('date')" class="sortable">Date ⬍</th>
+    <th onclick="sortBy('status')" class="sortable">Status ⬍</th>
+    <th>Notes</th>
+    <th>Actions</th>
+  </tr>
+</thead
+
+    <tbody></tbody>
+  </table>
+
+  <script src="script.js"></script>
+</body>
+</html>
