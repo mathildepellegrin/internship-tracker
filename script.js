@@ -1,7 +1,6 @@
 const form = document.getElementById('internship-form');
 const tableBody = document.querySelector('#application-table tbody');
 let applications = JSON.parse(localStorage.getItem('applications')) || [];
-
 let sortKey = null;
 let sortAsc = true;
 
@@ -14,7 +13,6 @@ function renderTable() {
   applications.forEach((app, index) => {
     const row = document.createElement('tr');
 
-    // Regular display mode
     if (!app.isEditing) {
       row.innerHTML = `
         <td>${app.company}</td>
@@ -23,12 +21,11 @@ function renderTable() {
         <td>${app.status}</td>
         <td>${app.notes}</td>
         <td>
-          <button onclick="editApp(${index})">Edit</button>
-          <button onclick="deleteApp(${index})">Delete</button>
+          <button onclick="editApp(${index})">✍️</button>
+          <button onclick="deleteApp(${index})">🗑️</button>
         </td>
       `;
     } else {
-      // Editable fields mode
       row.innerHTML = `
         <td><input type="text" id="edit-company-${index}" value="${app.company}"></td>
         <td><input type="text" id="edit-role-${index}" value="${app.role}"></td>
@@ -64,15 +61,13 @@ function cancelEdit(index) {
 }
 
 function saveEdit(index) {
-  const updated = {
+  applications[index] = {
     company: document.getElementById(`edit-company-${index}`).value,
     role: document.getElementById(`edit-role-${index}`).value,
     date: document.getElementById(`edit-date-${index}`).value,
     status: document.getElementById(`edit-status-${index}`).value,
     notes: document.getElementById(`edit-notes-${index}`).value
   };
-
-  applications[index] = updated;
   saveApplications();
   renderTable();
 }
@@ -82,17 +77,18 @@ function deleteApp(index) {
   saveApplications();
   renderTable();
 }
+
 function sortBy(key) {
   if (sortKey === key) {
-    sortAsc = !sortAsc; // toggle sort direction
+    sortAsc = !sortAsc;
   } else {
     sortKey = key;
     sortAsc = true;
   }
 
   applications.sort((a, b) => {
-    let valA = a[key].toLowerCase ? a[key].toLowerCase() : a[key];
-    let valB = b[key].toLowerCase ? b[key].toLowerCase() : b[key];
+    let valA = a[key]?.toLowerCase?.() || a[key];
+    let valB = b[key]?.toLowerCase?.() || b[key];
 
     if (valA < valB) return sortAsc ? -1 : 1;
     if (valA > valB) return sortAsc ? 1 : -1;
@@ -100,6 +96,28 @@ function sortBy(key) {
   });
 
   renderTable();
+}
+
+function downloadCSV() {
+  if (applications.length === 0) {
+    alert("No data to export.");
+    return;
+  }
+
+  const headers = ["Company", "Role", "Date Applied", "Status", "Notes"];
+  const rows = applications.map(app =>
+    [app.company, app.role, app.date, app.status, app.notes]
+      .map(field => `"${(field || '').replace(/"/g, '""')}"`)
+      .join(',')
+  );
+
+  const csvContent = [headers.join(','), ...rows].join('\n');
+  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = 'internship_applications.csv';
+  link.click();
 }
 
 form.addEventListener('submit', function (e) {
