@@ -17,7 +17,7 @@ required — all data is stored in the browser using `localStorage`.
 
 ## 📸 Demo
 
-![screenshot](assets/screenshot.png) to be uploaded...<!-- Optional: Add a screenshot if you have one -->
+![screenshot](assets/screenshot.png) 
 
 ---
 
