@@ -1,17 +1,17 @@
-# 🗓️ Internship Application Tracker
+#  Internship Application Tracker
 
 A simple, browser-based internship/job application tracker built with **HTML**, **CSS**, and **JavaScript**. No backend
 required — all data is stored in the browser using `localStorage`.
 
 ---
 
-## 👩‍💻 Features
+##  Features
 
-- ➕ Add internship or job applications
-- 🗂 View applications in a sortable table
-- 📝 Track company, role, date applied, status, and notes
-- 🗑 Delete entries
-- 💾 Automatically saves data locally in your browser
+- Add internship or job applications
+- View applications in a sortable table
+- Track company, role, date applied, status, and notes
+- Delete entries
+- Automatically saves data locally in your browser
 
 ---
 
@@ -21,13 +21,13 @@ required — all data is stored in the browser using `localStorage`.
 
 ---
 
-## 🚀 Live Demo
+## Live Demo
 
 [Click here to try it!](https://your-username.github.io/internship-tracker/)  to be uploaded...
 
 ---
 
-## 📂 File Structure
+## File Structure
 internship-tracker/
 
 ├── index.html # Main HTML file
@@ -42,7 +42,7 @@ internship-tracker/
 
 ---
 
-## 📌 Future Features
+## Future Features
 
 - UI polish/ Animations
 - Light/dark mode switch
